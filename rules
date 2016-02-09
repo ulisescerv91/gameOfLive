@@ -1,0 +1,6 @@
+Reglas Juego de la vida
+
+1.-campo vacio rodeada de 3 vecinos vivos----VIVE
+2.-campo lleno con menos de 2 o mas de 3 vecinos vivos------MUERE
+3.-campo que tenga entre 2 y 3 vecinos vivos----VIVE
+4.-TODO el campo se actualiza hasta que se tenga conocimiento del estado de todas los campos 
