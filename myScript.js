@@ -24,11 +24,9 @@ var iniciar=function(){
 		};
 		//llenamos array principal
 		arrayX[row] = arrayY;
-		//pasamos los mismos datos al temporal
-		tempArray[row] = arrayY;
-		//Imprimir el Array PRINCIPAL
+		//Imprimir el Array Con el que inicia el juego
 		console.log(arrayX[row]);
-		//limpiamos array para que guarde correctamente
+		//limpiamos array 
 		arrayY=[];
 	};
 }
@@ -39,7 +37,6 @@ iniciar();
 var valorCerlda=function(x,y){
 	return arrayX[x][y]
 }
-
 
 //FUNCION para buscar numero de vecinos que tiene cada celula
 var vecinos=function(x,y){
@@ -84,10 +81,9 @@ var vecinos=function(x,y){
 	}else {
 		alert("mal")
 	}
-	console.log('V: '+numeroVecinos	)
+	//console.log('V: '+numeroVecinos	)
 	return numeroVecinos;
 }
-
 
 //FUNCION determinar si la posicion que se manda llamar tendra que morir o vivir
 var vivir_morir=function(nVecinos,estado){
@@ -106,10 +102,13 @@ var vivir_morir=function(nVecinos,estado){
 
 //Funcion para Ver el cambio paso a paso
 var loop=function(){
+	//copiamos el array Original
+	tempArray=arrayX.slice();
 	//Recorremos cada posicion del Array Principal
 	for (var row=1; row <filas; row++) {
-		tempArray2[0]=0;
-		tempArray2[9]=0;
+		tempArray2[0]=0
+		tempArray2[9]=0
+
 		for (var column=1 ;column <columnas; column++) {
 			//Numero de vecinos de la posicion actual
 			n=vecinos(row,column);
@@ -117,10 +116,10 @@ var loop=function(){
 			m=vivir_morir(n,valorCerlda(row,column))
 			//escribir en el array temporal
 			tempArray2[column]=m;		
-			if(m==1)
-				console.log('VIVE--'+n);
-			else
-				console.log('MUERE--'+n);
+			// if(m==1)
+			// 	console.log('VIVE--'+n);
+			// else
+			// 	console.log('MUERE--'+n);
 		};
 		//pasamos la nueva informacion de como se vera una vez termine de hacer el recorrido por todo el tablero
 		tempArray[row]=tempArray2;
@@ -128,24 +127,25 @@ var loop=function(){
 		tempArray2=[];
 	};
 	//imprimimos para comparar con el principal VS el proxima vista
-	console.log('ORIGINAL')
-	for (var row=0; row <filas; row++) 
-		//for (var column=0 ;column <columnas; column++)
-			console.log(arrayX[row])
-	// tempArray=arrayX;
-	console.log('TEMPORAL')
-	for (var row=0; row <filas; row++) 
-		//for (var column=0 ;column <columnas; column++)
-			console.log(tempArray[row])
-	//pasar los nuevos valores al array principal
-	arrayX=[];
-	arrayX=tempArray;
-	tempArray=[];
+	// console.log('ORIGINAL')
+	// for (var row=0; row <filas; row++) 
+	// 	//for (var column=0 ;column <columnas; column++)
+	// 		console.log(arrayX[row])
+	// // tempArray=arrayX;
+	// console.log('TEMPORAL')
+	// for (var row=0; row <filas; row++) 
+	// 	//for (var column=0 ;column <columnas; column++)
+		console.log(tempArray[row])
+	//NUEVO
+	arrayX=tempArray.slice();
 	console.log('NUEVO')
 	for (var row=0; row <filas; row++) 
 		//for (var column=0 ;column <columnas; column++)
 			console.log(arrayX[row])
 }
+
+
+
 //BOTON NEW STEP
 var step=document.getElementById('step')
 //asignamos el evento para el nuevo loop
